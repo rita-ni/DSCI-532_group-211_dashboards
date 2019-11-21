@@ -2,9 +2,9 @@
 
 ## Our Pledge
 
+
 In the interest of fostering an open and welcoming environment, we as
-contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, sex characteristics, gender identity and expression,
+contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body,size, disability, ethnicity, sex characteristics, gender identity and expression,
 level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation.
 
@@ -16,7 +16,8 @@ include:
 * Using welcoming and inclusive language
 * Being respectful of differing viewpoints and experiences
 * Gracefully accepting constructive criticism
-* Focusing on what is best for the group
+* Focusing on what is best for the team, finishing distributed work with effort and on-time.
+
 
 Examples of unacceptable behavior by participants include:
 
@@ -47,8 +48,7 @@ further defined and clarified by project maintainers.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at niruidan@gmail.com or the MDS program. All
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at niruidan@gmail.com or the MDS program. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
