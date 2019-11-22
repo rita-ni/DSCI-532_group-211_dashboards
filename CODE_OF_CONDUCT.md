@@ -3,7 +3,7 @@
 ## Introduction
 
 In the interest of fostering an open and welcoming environment, we as
-Contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body,size, disability, ethnicity, sex characteristics, gender identity and expression,
+contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body,size, disability, ethnicity, sex characteristics, gender identity and expression,
 level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation.  All participants in this project are expected to show respect and courtesy to others.
 
