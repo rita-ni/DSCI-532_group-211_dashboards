@@ -1,12 +1,13 @@
 # Contributor Code of Conduct
 
-## Our Pledge
-
+## Introduction
 
 In the interest of fostering an open and welcoming environment, we as
-contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body,size, disability, ethnicity, sex characteristics, gender identity and expression,
+Contributors of this MDS project pledge to making participation in our project a harassment-free experience for everyone, regardless of age, body,size, disability, ethnicity, sex characteristics, gender identity and expression,
 level of experience, education, socio-economic status, nationality, personal
-appearance, race, religion, or sexual identity and orientation.
+appearance, race, religion, or sexual identity and orientation.  All participants in this project are expected to show respect and courtesy to others.
+
+Contributors of this project are responsible for enforcing the Code of Conduct. They can be contacted by emailing niruidan@gmail.com and/or amarria1@gmail.com. All reports will be kept confidential.
 
 ## Our Standards
 
@@ -17,7 +18,6 @@ include:
 * Being respectful of differing viewpoints and experiences
 * Gracefully accepting constructive criticism
 * Focusing on what is best for the team, finishing distributed work with effort and on-time.
-
 
 Examples of unacceptable behavior by participants include:
 
@@ -30,6 +30,8 @@ Examples of unacceptable behavior by participants include:
 * Other conduct which could reasonably be considered inappropriate in a
  professional setting
 
+These standards applies to all spaces involved during DSCI 532 including, but not limited to, class and lab meetings, email communication, and online forums such as Slack and GitHub. The DSCI 532 teaching team will also assist with the enforcement of the Code of Conduct.
+
 ## Our Responsibilities
 
 Project contributors are responsible for clarifying the standards of acceptable
@@ -37,18 +39,12 @@ behavior and are expected to take appropriate and fair corrective action in
 response to any instances of unacceptable behavior.
 
 Contributers of this project have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
+reject comments, commits, code, issues, and other contributions
 that are not aligned to this Code of Conduct.
-
-## Scope
-
-This Code of Conduct applies both within the MDS project spaces and in public spaces
-when an individual is representing the project. For example, when using the project repository. Representation of a project may be
-further defined and clarified by project maintainers.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at niruidan@gmail.com or the MDS program. All
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at niruidan@gmail.com or amarria1@gmail.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
@@ -56,14 +52,10 @@ Further details of specific enforcement policies may be posted separately.
 
 Project maintainers who do not follow or enforce the Code of Conduct in good
 faith may face temporary or permanent repercussions as determined by other
-members of the project's leadership.
+members of the project's leadership or the teaching team of DSCI 532.
 
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html and UBC Data Science 100 CoC, available at https://github.com/UBC-DSCI/dsci-100/blob/master/CODE_OF_CONDUCT.md.
 
-[homepage]: https://www.contributor-covenant.org
-
-For answers to common questions about this code of conduct, see
-https://www.contributor-covenant.org/faq
