@@ -1,15 +1,18 @@
 # DSCI-532_group-211_dashboards
 
+This repository hosts the dashboard for the stock price data from the `vega-dataset`. The background and purpose of this dashboard can be found in our [proposal.](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/blob/master/Proposal.md)
+
 ### Description of the App/Dashboard
 
-The App has two sets of charts for the users visualize stocks info of 5 companies from 2001 to 2010.
+The App has two sets of charts for the users to visualize: **montly stock price history**, and **investment gain** of five tech companies from 2001 to 2010.
 
-- First for the Stock price variations of five companies over the time. The plots are interactive based on what user selects in the chart on left hand side. Depending on the line selected(corresponding to a particular company's stock price), the chart on the right hand side interactively change and show percentage price change(per unit time)
+- The first set of charts shows the changes in stock price of the five companies over the ten year period. The chart on the left allows users to interactively click on a specific stock and highlight the price line of the selected stock. Depending on the stock selection of the user, the chart on the right will change correspondingly to show the monthly percentage price change for the selected company. These chart will be displayed on the "Stock trends" tab.
 
-- Second for the investment value changes and returns for a year. The user can select a year  and both charts will change based on that. 
+- The second set of charts shows the changes in investment value over time as well as investment returns given a year range which the user selects. Both charts will change interactively based on the year range selected by user. 
 
 **NOTE**
-The charts shown in the label below are based on lab4 and are meant for just showing the sketch. As we have different research questions this time the labels on the  charts and time units will be different.
+The chart labels and titles shown in the sketch below are based on DSCI 531 lab 4 and are solely meant for showing the dashboard prototype. This is due to the fact that we have different research questions for this project, and the labels on the  charts will change accordingly. These chart will be displayed on the "Investmet return/value" tab.
 
+### Sketch for dashboard 
 
-![](img/sketch.png)
+![](img/sketch2.png)
