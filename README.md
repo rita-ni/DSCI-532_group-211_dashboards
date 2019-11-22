@@ -13,5 +13,6 @@ The App has two sets of charts for the users to visualize stocks\ information of
 **NOTE**
 The labels and titles shown in the sketch below are based on lab4 and are solely meant for showing the dashboard prototype. This is due to the fact that we have different research questions this time, and the labels on the  charts  will change accordingly.
 
+### Sketch for dashboard 
 
 ![](img/sketch2.png)
