@@ -27,7 +27,7 @@ To calculate the investment return at each period, we created another column cal
 
 ## Research questions and usage scenarios
 
-*note: in the usage scenarios, tasks are emphasized using [ ], e.g. [explore]*
+*Note: in the usage scenarios, tasks are emphasized using [ ], e.g. [explore]*
 
 Ted is a layman in financial markets. He just becomes interested in the stock markets and he wants to [explore] how stock prices changed in the past. He is interested in the tech industry, especially these five companies: Microsoft, Amazon, IBM, Google, and Apple. He wants to [explore] their price fluctuations and monthly price changes. His first question is:
 
