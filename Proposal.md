@@ -27,6 +27,8 @@ To calculate the investment return at each period, we created another column cal
 
 ## Research questions and usage scenarios
 
+*Note: in the usage scenarios, tasks are emphasized using [ ], e.g. [explore]*
+
 Ted is a layman in financial markets. He just becomes interested in the stock markets and he wants to [explore] how stock prices changed in the past. He is interested in the tech industry, especially these five companies: Microsoft, Amazon, IBM, Google, and Apple. He wants to [explore] their price fluctuations and monthly price changes. His first question is:
 
 #### Research Question 1: How did stock prices change between 2000 and 2010? Did the 2008 financial crisis has any impact on stock prices?
@@ -39,8 +41,8 @@ Then, Ted wants to know more about the investment return. His second question is
 
 #### Research Question 2: What is the investment return for each of these five stocks?
 
-Ted wants to be able to [compare] the hypothetical investment returns of different stocks, and [identify] which stock gives the highest return.    
+Ted wants to be able to [explore] the hypothetical investment value over the 10-year range, [compare] the hypothetical investment returns of different stocks, and [identify] which stock gives the highest return.    
     
 On the second tab, Ted can take a look at the hypothetical investment value of the five stocks from January 2000 to March 2010 (August 2004 to Mach 2010 for Google). He can zoom in or zoom out to select the time period to take a closer look at the hypothetical investment value at that time. In another graph, Ted can select different end year from a slide bar to check out the overall investment return for each stock during selected time range. By doing so, Ted may find out that Apple will give him the highest return and it may be best for him to hold the stock from the beginning till the end.    
     
-This app may give Ted some basic ideas of how stock prices fluctuate and how long-term investment can help him get through financial crisis. Next, Ted decides to look at stock prices between 2010 and 2019 and investigate if the conclusions still hold in more recent data. 
+This app may give Ted some basic ideas of how stock prices fluctuate and how long-term investment can help him get through financial crisis. Next, Ted decides to talk to a financial advisor to explore his investment plans, since he believes now he understands the stock market better. 
