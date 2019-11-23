@@ -19,8 +19,11 @@ We created the `monthly_return` column, which is the monthly percentage changes 
 In order to calculate the investment value and investment return of each stock, we created `shares` and `inv_value` columns. We assume that the investor started with an initial investment of $10,000 in January 1, 2000. The `shares` column is calculated as $10,000 divided by the price at January 1, 2000. For Google it is $10,000 divided by the price at August 1, 2004.      
 
 The `inv_value` column was calculated by `price` * `shares`.   
+<p style="text-align:center;"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\large&space;inv\_value=price&space;*&space;shares" title="\large inv\_value=price * shares" />
    
-To calculate the investment return at each period, we created another column called `investment_return`, which was `inv_value` divided by 10,000 then minus 1. 
+To calculate the investment return at each period, we created another column called `investment_return`, which was `inv_value` divided by 10,000 then minus 1:
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\large&space;investment\_return&space;=&space;\frac{inv\_value}{10000}&space;-&space;1." target="_blank"><img src="https://latex.codecogs.com/svg.latex?\inline&space;\large&space;investment\_return&space;=&space;\frac{inv\_value}{10000}&space;-&space;1." title="\large investment\_return = \frac{inv\_value}{10000} - 1." /></a>
 
 ## Research questions and usage scenarios
 
