@@ -268,14 +268,14 @@ app.layout = html.Div([
                                     'display': 'inline-block',}),
         ]),
         # Defining the layout of the third Tab
-        dcc.Tab(label='About our data', children=[
-            html.Div([html.H1("Dataset Introduction", style={'textAlign': 'center'}),
-                dash_table.DataTable(
-                    id='table',
-                    columns=[{"name": i, "id": i} for i in df.columns],
-                    data=df.iloc[0:5,:].to_dict("rows"),
-                )]
-            )])
+        # dcc.Tab(label='About our data', children=[
+        #     html.Div([html.H1("Dataset Introduction", style={'textAlign': 'center'}),
+        #         dash_table.DataTable(
+        #             id='table',
+        #             columns=[{"name": i, "id": i} for i in df.columns],
+        #             data=df.iloc[0:5,:].to_dict("rows"),
+        #         )]
+        #     )])
 
 
         ])
