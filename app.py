@@ -281,7 +281,7 @@ app.layout = html.Div([
                 dash_table.DataTable(
                     id='table',
                     columns=[{"name": i, "id": i} for i in df_original.columns],
-                    data=df_original.iloc[0:5,:].to_dict("rows"),
+                    data=df_original.iloc[[0,1,2,123,124,125,246,247,248,369,370,371,437,438,439], :].to_dict("rows"),
                     style_cell={
                          'textAlign': 'center',
                         'height': 'auto',
