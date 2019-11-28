@@ -215,8 +215,7 @@ app.layout = html.Div([
     dcc.Tabs(id="tabs", children=[
         # Defining the layout of the first Tab
         dcc.Tab(label='Stock Trends', children=[
-            html.Div([html.H1("Dataset Introduction", style={'textAlign': 'center'}),
-                
+            html.Div([
                 html.H1("Price history", style={'textAlign': 'center'}),
                 # Adding the first dropdown menu and the subsequent time-series graph
                 dcc.Dropdown(id='my-dropdown',
