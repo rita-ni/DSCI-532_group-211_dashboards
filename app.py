@@ -216,11 +216,7 @@ app.layout = html.Div([
         # Defining the layout of the first Tab
         dcc.Tab(label='Stock Trends', children=[
             html.Div([html.H1("Dataset Introduction", style={'textAlign': 'center'}),
-                dash_table.DataTable(
-                    id='table',
-                    columns=[{"name": i, "id": i} for i in df.columns],
-                    data=df.iloc[0:5,:].to_dict("rows"),
-                ),
+                
                 html.H1("Price history", style={'textAlign': 'center'}),
                 # Adding the first dropdown menu and the subsequent time-series graph
                 dcc.Dropdown(id='my-dropdown',
@@ -229,13 +225,23 @@ app.layout = html.Div([
                                       {'label': 'Amazon', 'value': 'Amazon'}, 
                                       {'label': 'Microsoft','value': 'Microsoft'},
                                       {'label': 'Google','value': 'Google'}], 
-                             multi=True,value=['Apple'],
+                             multi=True,value=['Apple', 'IBM', 'Google'],
                              style={"display": "block", "margin-left": "auto", 
                                     "margin-right": "auto", "width": "60%"}),
-                dcc.Graph(id='history'),
+                dcc.Graph(id='history', 
+                          style={'height': 500,
+                                'width': '70%',
+                                "display": "block",
+                                "margin-left": "auto",
+                                "margin-right": "auto",}),
                 html.H1("Montly change", style={'textAlign': 'center'}),
                 
-                dcc.Graph(id='monthchange')
+                dcc.Graph(id='monthchange', 
+                          style={'width': '70%',
+                                "display": "block",
+                                "margin-left": "auto",
+                                "margin-right": "auto",
+                                'textAlign': 'center'})
             ], className="container"),
         ]),
         # Defining the layout of the second tab
@@ -243,7 +249,12 @@ app.layout = html.Div([
             html.H1("Investment Value Change", 
                     style={"textAlign": "center"}),
             # adding investment plot
-            dcc.Graph(id = 'investment'),
+            dcc.Graph(id = 'investment', 
+                    style={'width': '75%',
+                                "display": "block",
+                                "margin-left": "auto",
+                                "margin-right": "auto",
+                                'textAlign': 'center'}),
             # range slider
                 html.P([
                     html.Label("Time Period"),
@@ -252,14 +263,22 @@ app.layout = html.Div([
                                     min = 0,
                                     max = 11,
                                     value = [0, 2]) 
-                        ], style = {'width' : '80%',
+                        ], style = {'width' : '75%',
                                     'fontSize' : '20px',
                                     'padding-left' : '100px',
-                                    'display': 'inline-block'})
-                    
-                      
-        
+                                    'display': 'inline-block',}),
         ]),
+        # Defining the layout of the third Tab
+        dcc.Tab(label='About our data', children=[
+            html.Div([html.H1("Dataset Introduction", style={'textAlign': 'center'}),
+                dash_table.DataTable(
+                    id='table',
+                    columns=[{"name": i, "id": i} for i in df.columns],
+                    data=df.iloc[0:5,:].to_dict("rows"),
+                )]
+            )])
+
+
         ])
     ])
 
@@ -291,8 +310,9 @@ def update_graph(selected_dropdown):
                                                        'step': 'year', 
                                                        'stepmode': 'backward'},
                                                       {'step': 'all'}])},
-                   'rangeslider': {'visible': True}, 'type': 'date'},
-             yaxis={"title":"Stock price (USD)"})}
+                   'rangeslider': {'visible': True}, 'type': 'date',
+                                   'range':['2007-04-01', '2009-01-01']},
+             yaxis={"title":"Stock price (USD)"},)}
     return figure
 
 
@@ -307,7 +327,6 @@ def update_graph(selected_dropdown_value):
     bins = [-999, 0, 999]
     labels = ['neg', 'pos']
     df2['labels'] = pd.cut(df2.monthly_return, bins=bins, labels=labels)
-    # trace = go.Bar(x=df2.date, y=df2.monthly_return)
 
     figure = px.bar(df2, x = 'date',
                         y = 'monthly_return',
@@ -321,7 +340,8 @@ def update_graph(selected_dropdown_value):
             xaxis={"title":"Date",
                    'rangeslider': {'visible': True}, 'type': 'date'},
             barmode='relative',
-            showlegend=False)
+            showlegend=False,
+            title_xanchor = 'auto')
     return figure
 
 
