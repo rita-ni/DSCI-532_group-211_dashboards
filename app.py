@@ -257,7 +257,7 @@ app.layout = html.Div([
                                       {'label': 'Amazon', 'value': 'Amazon'}, 
                                       {'label': 'Microsoft','value': 'Microsoft'},
                                       {'label': 'Google','value': 'Google'}], 
-                             multi=True,value=['Apple', 'IBM', 'Google'],
+                             multi=True,value=['Apple', 'IBM', 'Amazon'],
                              style={"display": "block", "margin-left": "auto", 
                                     "margin-right": "auto", "width": "60%"}),
                                  
@@ -286,7 +286,7 @@ app.layout = html.Div([
                                     marks = date_mark2,
                                     min = 0,
                                     max = 10,
-                                    value = [0, 4]) 
+                                    value = [0, 5]) 
                         ], style = {'width' : '80%',
                                     'fontSize' : '20px',
                                     'padding-left' : '100px',
