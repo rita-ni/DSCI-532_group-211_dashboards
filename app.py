@@ -209,6 +209,38 @@ app.layout = html.Div([
     # Dividing the dashboard in tabs
     dcc.Tabs(id="tabs", children=[
         # Defining the layout of the first Tab
+        dcc.Tab(label='About Our Data', children=[
+            html.Div(children = [html.H1("Dataset Introduction", style={'textAlign': 'center', 'display': 'block', 'fontFamily': 'arial'}),
+            html.P("""The dataset we are using is the  Stocks  data from the vega-datasets. 
+            The dataset has 560 observations in total. """, style={'fontFamily': 'arial', 'display': 'inline-block'}),
+
+    
+                dash_table.DataTable(
+                    id='table',
+                    columns=[{"name": i, "id": i} for i in df_original.columns],
+                    data=df_original.iloc[[0,1,2,123,124,125,246,247,248,369,370,371,437,438,439], :].to_dict("rows"),
+                    style_cell={
+                         'textAlign': 'center',
+                        'height': 'auto',
+                        'width': 'auto',
+                        'whiteSpace': 'normal'}
+    
+            
+                ),
+            html.P("""There are 5 companies in total, and they are Microsoft, Amazon, IBM, Google, and Apple.""", style={'fontFamily': 'arial'}),
+            html.P("""The date column lists out the date when the stock price was recorded.
+            The value of the date column ranges from January 1, 2000 to March 1, 2010. The date range is the same for Microsoft, Amazon, IBM, and Apple. Each of them has 123 observations in the dataset. 
+            Since Google held its IPO in August, 2004, the record for Google started from August 1, 2004. 
+            Therefore, there are 68 observations for Google.""", style={'fontFamily': 'arial'}),
+            html.P(""" The price column lists out the price of that stock on the recorded date.""", style={ 'fontFamily': 'arial'}),
+            html.P(""" The purpose of this app is to help people form a better view of stock price fluctuations 
+                        and long-term investment gains.""", style={ 'fontFamily': 'arial'}),
+
+
+               
+                
+            ], className="container"), 
+        ]),
         dcc.Tab(label='Stock Trends', children=[
             html.Div([
                 html.H1("Price History", style={'textAlign': 'center', 'fontFamily': 'arial'}),
@@ -254,7 +286,7 @@ app.layout = html.Div([
                                     marks = date_mark2,
                                     min = 0,
                                     max = 10,
-                                    value = [0, 2]) 
+                                    value = [0, 4]) 
                         ], style = {'width' : '80%',
                                     'fontSize' : '20px',
                                     'padding-left' : '100px',
@@ -290,39 +322,7 @@ app.layout = html.Div([
                                     'fontSize' : '20px',
                                     'padding-left' : '100px',
                                     'display': 'inline-block',}),
-        ]),
-                dcc.Tab(label='About Our Data', children=[
-            html.Div(children = [html.H1("Dataset Introduction", style={'textAlign': 'center', 'fontFamily': 'arial'}),
-            html.P("""The dataset we are using is the  Stocks  data from the vega-datasets. 
-            The dataset has 560 observations in total. """, style={'fontFamily': 'arial'}),
-
-    
-                dash_table.DataTable(
-                    id='table',
-                    columns=[{"name": i, "id": i} for i in df_original.columns],
-                    data=df_original.iloc[[0,1,2,123,124,125,246,247,248,369,370,371,437,438,439], :].to_dict("rows"),
-                    style_cell={
-                         'textAlign': 'center',
-                        'height': 'auto',
-                        'width': 'auto',
-                        'whiteSpace': 'normal'}
-    
-            
-                ),
-            html.P("""There are 5 companies in total, and they are Microsoft, Amazon, IBM, Google, and Apple.""", style={'fontFamily': 'arial'}),
-            html.P("""The date column lists out the date when the stock price was recorded.
-            The value of the date column ranges from January 1, 2000 to March 1, 2010. The date range is the same for Microsoft, Amazon, IBM, and Apple. Each of them has 123 observations in the dataset. 
-            Since Google held its IPO in August, 2004, the record for Google started from August 1, 2004. 
-            Therefore, there are 68 observations for Google.""", style={'fontFamily': 'arial'}),
-            html.P(""" The price column lists out the price of that stock on the recorded date.""", style={ 'fontFamily': 'arial'}),
-            html.P(""" The purpose of this app is to help people form a better view of stock price fluctuations 
-                        and long-term investment gains.""", style={ 'fontFamily': 'arial'}),
-
-
-               
-                
-            ], className="container"), 
-        ]),
+        ])
         ])
     ])
 
