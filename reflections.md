@@ -21,9 +21,8 @@
 - Idea behind this is to ensure transparency to the users who may use dashboard to make decisions. 
 
 ## Limitations
-- The original dataset is limited, so there is only a limited stuff/analysis we can do this dataset.
-- The dashboard is simple. If we have more time, we can add more fancy widgets to the dashboard. We can also add different themes to the dashboard, to make it look more professional.  
-
+- The original dataset is limited(3 main columns), so there are only few things we can do with it.
+- The dashboard is simple as of now; If we have more time, we can add more fancy widgets and themes to make it look more more professional.
 
 
  
