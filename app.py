@@ -189,6 +189,12 @@ fig  = dict(
         ],
  layout = layout)
 
+dates_2 = [
+         '2000-01-01', '2001-01-01', '2002-01-01', '2003-01-01', '2004-01-01',
+         '2005-01-01',  '2006-01-01','2007-01-01',  '2008-01-01','2009-01-01',  '2010-01-01'
+         ]
+date_mark2 = {i : dates_2[i] for i in range(0,11)}
+
 ##variables for slider on tab 2
 dates = [
          '2004-08-01', '2005-02-01', '2005-08-01', '2006-02-01', '2006-08-01',
@@ -240,7 +246,20 @@ app.layout = html.Div([
                                 "display": "block",
                                 "margin-left": "auto",
                                 "margin-right": "auto",
-                                'textAlign': 'center'})
+                                'textAlign': 'center'}),
+                # range slider
+                html.P([
+                    html.Label("Time Period"),
+                    dcc.RangeSlider(id = 'slider2',
+                                    marks = date_mark2,
+                                    min = 0,
+                                    max = 10,
+                                    value = [0, 2]) 
+                        ], style = {'width' : '80%',
+                                    'fontSize' : '20px',
+                                    'padding-left' : '100px',
+                                    'display': 'inline-block'})
+             
             ], className="container"),
         ]),
         # Defining the layout of the second tab
@@ -342,8 +361,9 @@ def update_graph(selected_dropdown):
 
 
 @app.callback(Output('monthchange', 'figure'),
-              [Input('my-dropdown', 'value')])
-def update_graph(selected_dropdown_value):
+              [Input('my-dropdown', 'value'),
+              Input('slider2', 'value')])
+def update_graph(selected_dropdown_value, X):
     dropdown = {"Google": "Google", "IBM": "IBM","Apple": "Apple","Amazon": "Amazon","Microsoft": "Microsoft",}
     trace1 = []
     for stock in selected_dropdown_value:
@@ -352,6 +372,7 @@ def update_graph(selected_dropdown_value):
     bins = [-999, 0, 999]
     labels = ['neg', 'pos']
     df2['labels'] = pd.cut(df2.monthly_return, bins=bins, labels=labels)
+    df2 = df2[(df2.date > dates_2[X[0]]) & (df2.date < dates_2[X[1]])]
 
     figure = px.bar(df2, x = 'date',
                         y = 'monthly_return',
@@ -363,7 +384,8 @@ def update_graph(selected_dropdown_value):
     figure = figure.update_layout(height=400*len(trace1), 
             title_text=f"Monthly price change for {', '.join(str(dropdown[i]) for i in selected_dropdown_value)} Over Time",
             xaxis={"title":"Date",
-                   'rangeslider': {'visible': True}, 'type': 'date'},
+                   #'rangeslider': {'visible': True}, 
+                   'type': 'date'},
             barmode='relative',
             showlegend=False,
             title_xanchor = 'auto')
