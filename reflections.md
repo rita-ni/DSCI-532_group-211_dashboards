@@ -13,7 +13,7 @@
 ### Second tab:
 - The chart in this tab shows the how a hypothetical investment value ($10K) changes over the time for different companies, which gives user an idea about the returns for short term and long term investment for different companies. **(Research question)**
 - The second chart proposed in sketch was removed from this tab as we thought it is reduntant and showed same values in percentages. 
-- All time range sliders in our dashboard allow user to change both start and end time. **(incorporated as the part of feedback on mileston1)**
+- All time range sliders in our dashboard allow user to change both start and end time. **(incorporated as the part of feedback on milestone 1)**
 
 ### Third tab
 - This tab was not part of initial sketch but we added it to show user the glimpse and summary of dataset behind the dashboard.
