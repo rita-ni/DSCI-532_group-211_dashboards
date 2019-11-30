@@ -6,7 +6,7 @@ The deployed APP can be found here:
 
 ### Description of the App/Dashboard
 
-The APP is called Stock Price Data Analysis. It has three tabs and two sets of charts for users to visualize: **monthly historical stock price**, and **investment value** of five tech companies from 2000 to 2010.
+The APP is called **Stock Price Data Analysis**. It has three tabs and two sets of charts for users to visualize: *monthly historical stock price*, and *investment value* of five tech companies from 2000 to 2010.
 
 - The first tab briefly introduces our dataset and the purposes of our APP. 
 
