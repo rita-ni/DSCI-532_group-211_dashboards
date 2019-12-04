@@ -143,8 +143,7 @@ df_tab2 = df_tab2.reset_index(drop = True)
 
 # app.config['suppress_callback_exceptions'] = True
 
-def make_plot(xval = 'date',
-              yval = 'price'):
+def make_plot(df):
     # Don't forget to include imports
     def mds_special():
         font = "Arial"
@@ -203,11 +202,7 @@ def make_plot(xval = 'date',
     # enable the newly registered theme
     alt.themes.enable('mds_special')
     #alt.themes.enable('none') # to return to default
-    typeDict = {'Displacement':['quantitative','Displacement (mm)'],
-                'Cylinders':['quantitative', 'Cylinders (#)'],
-                'Miles_per_Gallon':['quantitative', 'Fuel Efficiency (mpg)'],
-                'Horsepower':['quantitative', 'Horsepower (hp)']
-                }
+    
     # Create a plot from the cars dataset
     highlight = alt.selection(type='single', on='click',
                           fields=['company'])
@@ -362,25 +357,30 @@ app.layout = html.Div([
                              multi=True,value=['Apple', 'IBM', 'Amazon'],
                              style={"display": "block", "margin-left": "auto", 
                                     "margin-right": "auto", "width": "60%"}),
-                                 
                 html.Iframe(
-                    sandbox='allow-scripts',
-                    id='plot',
-                    style={'height': 1000,
+                        sandbox='allow-scripts',
+                        id='plot',
+                        height='1660',
+                        width='1000',
+                        style={'height': 1000,
                                 'width': '70%',
                                 "display": "block",
                                 "margin-left": "auto",
-                                "margin-right": "auto",},
-                    
-                    srcDoc=make_plot().to_html()
-        
-        ),
-       
-             
+                                "margin-right": "auto"},
+                        ################ The magic happens here
+                        srcDoc=make_plot(df).to_html()
+                        ################ The magic happens here
+                        )
+                                 
             ], className="container"),
         ]),
-        # Defining the layout of the second tab
-        dcc.Tab(label='Investment Value', children=[
+        
+
+     
+
+
+
+            dcc.Tab(label='Investment Value', children=[
             html.H1("How much would my investment be?", 
                     style={"textAlign": "center", 'fontFamily': 'arial'}),
             html.H3("""If I invested $10,000 in each of the 5 tech companies in August 2004 (when Google held its IPO), 
@@ -408,51 +408,28 @@ app.layout = html.Div([
                                     'padding-left' : '100px',
                                     'display': 'inline-block',}),
         ])
+       
+             
+            ], className="container"),
         ])
-    ])
+        # Defining the layout of the second tab
+        
+        
 
-
-# app.layout = html.Div([
-#     html.Div(
-#         className="app-header",
-#         children=[
-#             html.Div('Plotly Dash', className="app-header--title")
-#         ]
-#     ),
-#     ### ADD CONTENT HERE like: html.H1('text'),
-#     html.H1('This is my first dashboard'),
+@app.callback(
+    dash.dependencies.Output('plot', 'srcDoc'),
+    [dash.dependencies.Input('my-dropdown', 'value')])
+def update_plot(selected_values):
+    '''
+    Takes in an xaxis_column_name and calls make_plot to update our Altair figure
+    '''
     
-#     html.H3('Here is our first plot:'),
-#     html.Iframe(
-#         sandbox='allow-scripts',
-#         id='plot',
-#         height='1660',
-#         width='1000',
-#         style={'border-width': '0'},
-#         ################ The magic happens here
-#         srcDoc=make_plot().to_html()
-#         ################ The magic happens here
-#         ),
-#         html.H3('Dropdown to control Altair Chart'),
-#         dcc.Dropdown(
-#         id='dd-chart-x',
-#         options=[
-#             {'label': 'IBM', 'value': 'IBM'},
-#                                       {'label': 'Apple','value': 'Apple'},
-#                                       {'label': 'Amazon', 'value': 'Amazon'},
-#                                       {'label': 'Microsoft','value': 'Microsoft'},
-#                                       {'label': 'Google','value': 'Google'}
-#         ],
-#         value='Horsepower',
-#         style=dict(width='45%',
-#                    verticalAlign="middle")
-#         ),
-#         # Just to add some space
-#         html.Iframe(height='200', width='10',style={'border-width': '0'})
-# ])
-# This callback tells Dash the output is the `plot` IFrame; srcDoc is a
-# special property that takes in RAW html as an input and renders it
-# As input we take in the values from second dropdown we created (dd-chart)
-# then we run update_plot
+    # print(selected_values)
+    df_drop = df[df['company'].isin(selected_values)]
+    
+    updated_plot = make_plot(df_drop).to_html()
+    
+    return updated_plot
+
 if __name__ == '__main__':
     app.run_server(debug=True)
