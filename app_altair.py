@@ -375,7 +375,7 @@ app.layout = html.Div([
                                       {'label': 'Amazon', 'value': 'Amazon'}, 
                                       {'label': 'Microsoft','value': 'Microsoft'},
                                       {'label': 'Google','value': 'Google'}], 
-                             multi=True,value=['Apple', 'IBM', 'Amazon'],
+                             multi=True,value=['IBM','Apple', 'Amazon', 'Microsoft', 'Google'],
                              style={"display": "block", "margin-left": "auto", 
                                     "margin-right": "auto", "width": "60%"}),
                 html.Iframe(
