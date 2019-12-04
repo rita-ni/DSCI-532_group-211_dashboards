@@ -302,7 +302,7 @@ def make_plot2(df):
                   sort = ['Apple','Google','Amazon', 'IBM', 'Microsoft'])
             ).properties(width = 800, height = 400, title = 'Investment value change over the time')
 
-    return chart
+    return chart +chart.mark_circle()
 
 
 
@@ -431,7 +431,7 @@ app.layout = html.Div([
                                     marks = date_mark,
                                     min = 0,
                                     max = 12,
-                                    value = [0, 2]) 
+                                    value = [0, 12]) 
                         ], style = {'width' : '75%',
                                     'fontSize' : '20px',
                                     'padding-left' : '100px',
