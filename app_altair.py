@@ -234,6 +234,75 @@ def make_plot(df):
     ).add_selection(brush)
     return alt.vconcat(chart, lower) & bars
 
+def make_plot2(df):
+    # Don't forget to include imports
+    def mds_special():
+        font = "Arial"
+        axisColor = "#000000"
+        gridColor = "#DEDDDD"
+        return {
+            "config": {
+                "title": {
+                    "fontSize": 24,
+                    "font": font,
+                    "anchor": "start", # equivalent of left-aligned.
+                    "fontColor": "#000000"
+                },
+                'view': {
+                    "height": 300,
+                    "width": 400
+                },
+                "axisX": {
+                    "domain": True,
+                    #"domainColor": axisColor,
+                    "gridColor": gridColor,
+                    "domainWidth": 1,
+                    "grid": False,
+                    "labelFont": font,
+                    "labelFontSize": 12,
+                    "labelAngle": 0,
+                    "tickColor": axisColor,
+                    "tickSize": 5, # default, including it just to show you can change it
+                    "titleFont": font,
+                    "titleFontSize": 16,
+                    "titlePadding": 10, # guessing, not specified in styleguide
+                    "title": "X Axis Title (units)",
+                },
+                "axisY": {
+                    "domain": False,
+                    "grid": True,
+                    "gridColor": gridColor,
+                    "gridWidth": 1,
+                    "labelFont": font,
+                    "labelFontSize": 14,
+                    "labelAngle": 0,
+                    #"ticks": False, # even if you don't have a "domain" you need to turn these off.
+                    "titleFont": font,
+                    "titleFontSize": 16,
+                    "titlePadding": 10, # guessing, not specified in styleguide
+                    "title": "Y Axis Title (units)",
+                    # titles are by default vertical left of axis so we need to hack this
+                    #"titleAngle": 0, # horizontal
+                    #"titleY": -10, # move it up
+                    #"titleX": 18, # move it to the right so it aligns with the labels
+                },
+            }
+                }
+    # register the custom theme under a chosen name
+    alt.themes.register('mds_special', mds_special)
+    # enable the newly registered theme
+    alt.themes.enable('mds_special')
+    #alt.themes.enable('none') # to return to default
+    
+    # Create a plot from the cars dataset
+    chart = alt.Chart(df).mark_line().encode(
+    x = alt.X('date:T',  title = 'Month'),
+    y = alt.Y('inv_value:Q', title = 'Investment Value $USD'),
+    color = alt.Color('company:N', title = 'Company',
+                  sort = ['Apple','Google','Amazon', 'IBM', 'Microsoft'])
+            ).properties(width = 800, height = 400, title = 'Investment value change over the time')
+
+    return chart
 
 # variables for plot on tab 2
 layout = go.Layout(title = 'Investment value change'
@@ -389,12 +458,20 @@ app.layout = html.Div([
                 html.P("Use the year slide bar to select the time range and find out the investment value.", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
             # adding investment plot
-            dcc.Graph(id = 'investment', 
-                    style={'width': '75%',
+              html.Iframe(
+                        sandbox='allow-scripts',
+                        id='plot2',
+                        height='1660',
+                        width='1000',
+                        style={'height': 550,
+                                'width': '70%',
                                 "display": "block",
                                 "margin-left": "auto",
-                                "margin-right": "auto",
-                                'textAlign': 'center'}),
+                                "margin-right": "auto"},
+                        ################ The magic happens here
+                        srcDoc=make_plot2(df_tab2).to_html()
+                        ################ The magic happens here
+                        ),
             # range slider
                 html.P([
                     html.Label("Time Period"),
@@ -431,5 +508,60 @@ def update_plot(selected_values):
     
     return updated_plot
 
+# @app.callback(Output('investment', 'figure'),
+#              [Input('slider', 'value')])
+# def update_figure(X):
+#     df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
+    
+#     fig  = dict(
+#         data=[
+#             dict(
+#                 x=df2.date,
+#                 y = df2[df2.company == 'Microsoft']['inv_value'],
+#                 name='Microsoft',
+#                 marker=dict(
+#                     color='#FF0056'
+#                 )
+#             ),
+#              dict(
+#                 x=df2.date,
+#                 y = df2[df2.company == 'Apple']['inv_value'],
+#                 name='Apple',
+#                 marker=dict(
+#                     color='#5E0DAC'
+#                 )
+#             ),
+#              dict(
+#                 x=df2.date,
+#                 y = df2[df2.company == 'Google']['inv_value'],
+#                 name='Google',
+#                 marker=dict(
+#                     color='#FF7400'
+#                 )
+#              ),
+#                  dict(
+#                 x=df2.date,
+#                 y  = df2[df2.company == 'Amazon']['inv_value'],
+#                 name='Amazon',
+#                 marker=dict(
+#                     color='#375CB1'
+#                 )
+#                  ),
+#                  dict(
+#                 x=df2.date,
+#                 y = df2[df2.company == 'IBM']['inv_value'],
+#                 name='IBM',
+#                 marker=dict(
+#                     color='#FF4F00'
+#                 )
+#              )    
+#         ],
+#             layout = layout)
+#     return fig
+
+
+
 if __name__ == '__main__':
     app.run_server(debug=True)
+
+
