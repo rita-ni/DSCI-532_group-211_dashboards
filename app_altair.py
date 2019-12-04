@@ -508,56 +508,17 @@ def update_plot(selected_values):
     
     return updated_plot
 
-# @app.callback(Output('investment', 'figure'),
-#              [Input('slider', 'value')])
-# def update_figure(X):
-#     df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
+@app.callback(Output('plot2', 'srcDoc'),
+             [Input('slider', 'value')])
+def update_figure(X):
+    df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
     
-#     fig  = dict(
-#         data=[
-#             dict(
-#                 x=df2.date,
-#                 y = df2[df2.company == 'Microsoft']['inv_value'],
-#                 name='Microsoft',
-#                 marker=dict(
-#                     color='#FF0056'
-#                 )
-#             ),
-#              dict(
-#                 x=df2.date,
-#                 y = df2[df2.company == 'Apple']['inv_value'],
-#                 name='Apple',
-#                 marker=dict(
-#                     color='#5E0DAC'
-#                 )
-#             ),
-#              dict(
-#                 x=df2.date,
-#                 y = df2[df2.company == 'Google']['inv_value'],
-#                 name='Google',
-#                 marker=dict(
-#                     color='#FF7400'
-#                 )
-#              ),
-#                  dict(
-#                 x=df2.date,
-#                 y  = df2[df2.company == 'Amazon']['inv_value'],
-#                 name='Amazon',
-#                 marker=dict(
-#                     color='#375CB1'
-#                 )
-#                  ),
-#                  dict(
-#                 x=df2.date,
-#                 y = df2[df2.company == 'IBM']['inv_value'],
-#                 name='IBM',
-#                 marker=dict(
-#                     color='#FF4F00'
-#                 )
-#              )    
-#         ],
-#             layout = layout)
-#     return fig
+    
+    
+    
+    updated_plot = make_plot2(df2).to_html()
+    
+    return updated_plot
 
 
 
