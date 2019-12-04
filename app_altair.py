@@ -304,55 +304,7 @@ def make_plot2(df):
 
     return chart
 
-# variables for plot on tab 2
-layout = go.Layout(title = 'Investment value change'
-                   )
 
-
-fig  = dict(
-        data=[
-            dict(
-                x=df_tab2.date,
-                y = df_tab2[df_tab2.company == 'Microsoft']['inv_value'],
-                name='Microsoft',
-                marker=dict(
-                    color='#FF0056'
-                )
-            ),
-             dict(
-                x=df_tab2.date,
-                y = df_tab2[df_tab2.company == 'Apple']['inv_value'],
-                name='Apple',
-                marker=dict(
-                    color='#5E0DAC'
-                )
-            ),
-             dict(
-                x=df_tab2.date,
-                y = df_tab2[df_tab2.company == 'Google']['inv_value'],
-                name='Google',
-                marker=dict(
-                    color='#FF7400'
-                )
-             ),
-                 dict(
-                x=df_tab2.date,
-                y  = df_tab2[df_tab2.company == 'Amazon']['inv_value'],
-                name='Amazon',
-                marker=dict(
-                    color='#375CB1'
-                )
-                 ),
-                 dict(
-                x=df_tab2.date,
-                y = df_tab2[df_tab2.company == 'IBM']['inv_value'],
-                name='IBM',
-                marker=dict(
-                    color='#FF4F00'
-                )
-             )    
-        ],
- layout = layout)
 
 dates_2 = [
          '2000-01-01', '2001-01-01', '2002-01-01', '2003-01-01', '2004-01-01',
