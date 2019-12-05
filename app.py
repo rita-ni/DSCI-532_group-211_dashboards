@@ -409,6 +409,20 @@ app.layout = html.Div([
                         style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.P("Use the year slide bar to select the time range and find out the investment value.", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
+            
+            # range slider
+                html.P([
+                    html.Label("Time Period"),
+                    dcc.RangeSlider(id = 'slider',
+                                    marks = date_mark,
+                                    min = 0,
+                                    max = 12,
+                                    value = [0, 12]) 
+                        ], style = {'width' : '75%',
+                                    'fontSize' : '20px',
+                                    'padding-left' : '100px',
+                                    'display': 'inline-block',}),
+            
             # adding investment plot
               html.Iframe(
                         sandbox='allow-scripts',
@@ -424,18 +438,7 @@ app.layout = html.Div([
                         srcDoc=make_plot2(df_tab2).to_html()
                         ################ The magic happens here
                         ),
-            # range slider
-                html.P([
-                    html.Label("Time Period"),
-                    dcc.RangeSlider(id = 'slider',
-                                    marks = date_mark,
-                                    min = 0,
-                                    max = 12,
-                                    value = [0, 12]) 
-                        ], style = {'width' : '75%',
-                                    'fontSize' : '20px',
-                                    'padding-left' : '100px',
-                                    'display': 'inline-block',}),
+            
         ])
        
              
