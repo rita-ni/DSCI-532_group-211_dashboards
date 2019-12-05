@@ -1,3 +1,5 @@
+#importing required packages for the plot
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -10,9 +12,11 @@ import dash_table
 import plotly.express as px
 import plotly.graph_objs as go
 
-app = dash.Dash()
-server = app.server
 
+
+##########################################
+##   Data wrangling begins for dashboard  ##
+###########################################
 
 df_original = pd.read_csv('https://raw.githubusercontent.com/vega/vega-datasets/master/data/stocks.csv')
 df = df_original.copy()
@@ -140,12 +144,37 @@ df_tab2 = pd.concat(dflist2)
 df_tab2 = df_tab2.reset_index(drop = True)
 
 
+##########################################
+##   Data wrangling finished for dashboard  ##
+###########################################
 
-# app.config['suppress_callback_exceptions'] = True
+## Declaring variables used in dashboard
+
+# variables for date slider on tab3
+dates = [
+         '2004-08-01', '2005-02-01', '2005-08-01', '2006-02-01', '2006-08-01',
+         '2007-02-01',  '2007-08-01','2008-02-01',  '2008-08-01','2009-02-01',  '2009-08-01',
+         '2010-02-01', '2010-03-01']
+date_mark = {i : dates[i] for i in range(0,13)}
+
 
 def make_plot(df):
-    # Don't forget to include imports
+    """
+    Generates plots on tab 2 of the dashboard.
+
+    Input - Data frame to be plotted
+
+    Returns - Stock trend plot 
+                slider
+                monthly change chart
+
+    """
     def mds_special():
+
+        """
+        Function for default MDS configuration  for labels, titles etc. 
+        to be applied to altair plots
+        """
         font = "Arial"
         axisColor = "#000000"
         gridColor = "#DEDDDD"
@@ -207,6 +236,8 @@ def make_plot(df):
     highlight = alt.selection(type='single', on='click',
                           fields=['company'])
     brush = alt.selection(type='interval', encodings=['x'])
+
+    # stock history chart
     chart = alt.Chart(df).mark_line().encode(
                 alt.X('date', title = 'Date', scale=alt.Scale(domain=brush)),
                 alt.Y('price', title = 'Stock price (USD)'),
@@ -215,6 +246,8 @@ def make_plot(df):
             ).add_selection(highlight
             ).properties(title='Historical Stock Prices',
                         width=900, height=350)
+    
+    
     bars = alt.Chart(df).mark_bar().encode(
                 y=alt.Y('monthly_return', axis=alt.Axis(format='%')),
                 x=alt.X('date', scale=alt.Scale(domain=brush)),
@@ -223,6 +256,8 @@ def make_plot(df):
                     alt.value("steelblue"),  # The positive color
                     alt.value("orange"))).properties(width = 470, title = 'Monthly price change (%)'
             ).transform_filter(highlight).facet(facet='company', columns=2)
+    
+    #  monthly change chart
     lower = alt.Chart(df).mark_line().encode(
                 alt.X('date', title = ' ', scale=alt.Scale(domain=brush)),
                 alt.Y('price', title = ' ', axis = None),
@@ -232,11 +267,25 @@ def make_plot(df):
             ).properties(title = 'Feel free to drag across a time period below to zoom in the chart!',
     height=60, width = 900
     ).add_selection(brush)
-    return alt.vconcat(chart, lower) & bars
+   
+    return alt.vconcat(chart , lower) & bars
 
 def make_plot2(df):
-    # Don't forget to include imports
+    """
+    Generates plots on tab 3 of the dashboard.
+
+    Input - Data frame to be plotted
+
+    Returns - Investment value plot
+                
+    """
     def mds_special():
+
+        """
+        Function for default MDS configuration  for labels, titles etc. 
+        to be applied to altair plots
+        """
+
         font = "Arial"
         axisColor = "#000000"
         gridColor = "#DEDDDD"
@@ -294,7 +343,7 @@ def make_plot2(df):
     alt.themes.enable('mds_special')
     #alt.themes.enable('none') # to return to default
     
-    # Create a plot from the cars dataset
+    # Plot for investment value change 
     chart = alt.Chart(df).mark_line().encode(
     x = alt.X('date:T',  title = 'Month'),
     y = alt.Y('inv_value:Q', title = 'Investment Value $USD'),
@@ -302,36 +351,30 @@ def make_plot2(df):
                   sort = ['Apple','Google','Amazon', 'IBM', 'Microsoft'])
             ).properties(width = 800, height = 400, title = 'Investment value change over the time')
 
-    return chart +chart.mark_circle()
+    return chart + chart.mark_circle()
 
 
-
-dates_2 = [
-         '2000-01-01', '2001-01-01', '2002-01-01', '2003-01-01', '2004-01-01',
-         '2005-01-01',  '2006-01-01','2007-01-01',  '2008-01-01','2009-01-01',  '2010-01-01'
-         ]
-date_mark2 = {i : dates_2[i] for i in range(0,11)}
-
-##variables for slider on tab 2
-dates = [
-         '2004-08-01', '2005-02-01', '2005-08-01', '2006-02-01', '2006-08-01',
-         '2007-02-01',  '2007-08-01','2008-02-01',  '2008-08-01','2009-02-01',  '2009-08-01',
-         '2010-02-01', '2010-03-01']
-date_mark = {i : dates[i] for i in range(0,13)}
-
+####################################
+#### App layout begins ############
+####################################
+app = dash.Dash()
+server = app.server
 
 app.layout = html.Div([
     # Setting the main title of the Dashboard
     html.H1("Stock Price Data Analysis", style={"textAlign": "center", 'fontFamily': 'arial'}),
-    # Dividing the dashboard in tabs
+    
+    # Dividing the dashboard in  3 tabs
     dcc.Tabs(id="tabs", children=[
         # Defining the layout of the first Tab
+        
         dcc.Tab(label='About Our Data', children=[
             html.Div(children = [html.H1("Dataset Introduction", style={'textAlign': 'center', 'display': 'block', 'fontFamily': 'arial'}),
             html.P("""The dataset we are using is the  Stocks  data from the vega-datasets. 
             The dataset has 560 observations in total. """, style={'fontFamily': 'arial', 'display': 'inline-block'}),
 
-    
+                # addding dataset intro table to tab1
+
                 dash_table.DataTable(
                     id='table',
                     columns=[{"name": i, "id": i} for i in df_original.columns],
@@ -341,8 +384,7 @@ app.layout = html.Div([
                         'height': 'auto',
                         'width': 'auto',
                         'whiteSpace': 'normal'}
-    
-            
+
                 ),
             html.P("""There are 5 companies in total, and they are Microsoft, Amazon, IBM, Google, and Apple.""", style={'fontFamily': 'arial'}),
             html.P("""The date column lists out the date when the stock price was recorded.
@@ -352,15 +394,15 @@ app.layout = html.Div([
             html.P(""" The price column lists out the price of that stock on the recorded date.""", style={ 'fontFamily': 'arial'}),
             html.P(""" The purpose of this app is to help people form a better view of stock price fluctuations 
                         and long-term investment gains.""", style={ 'fontFamily': 'arial'}),
-
-
-               
-                
+   
             ], className="container"), 
         ]),
 
+        # Tab2 for historic stock trends
+
         dcc.Tab(label='Stock Trends', children=[
             html.Div([
+                # adding text, title etc for tab2
                 html.H1("Price History", style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.H2("From 2000 to 2010, Apple's stock price increased 760%.", style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.H3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010.", 
@@ -378,6 +420,8 @@ app.layout = html.Div([
                              multi=True,value=['IBM','Apple', 'Amazon', 'Microsoft', 'Google'],
                              style={"display": "block", "margin-left": "auto", 
                                     "margin-right": "auto", "width": "60%"}),
+                
+                # Importing chars created using altair 
                 html.Iframe(
                         sandbox='allow-scripts',
                         id='plot',
@@ -388,20 +432,17 @@ app.layout = html.Div([
                                 "display": "block",
                                 "margin-left": "auto",
                                 "margin-right": "auto"},
-                        ################ The magic happens here
-                        srcDoc=make_plot(df).to_html()
-                        ################ The magic happens here
-                        )
-                                 
+                      
+                        srcDoc=make_plot(df).to_html()   
+                        )                         
             ], className="container"),
         ]),
-        
 
-     
-
-
-
+            # Tab3
             dcc.Tab(label='Investment Value', children=[
+                
+            # adding text, title etc for tab3
+
             html.H1("How much would my investment be?", 
                     style={"textAlign": "center", 'fontFamily': 'arial'}),
             html.H3("""If I invested $10,000 in each of the 5 tech companies in August 2004 (when Google held its IPO), 
@@ -409,6 +450,20 @@ app.layout = html.Div([
                         style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.P("Use the year slide bar to select the time range and find out the investment value.", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
+            
+            # range slider for selecting time range
+            html.P([
+                    html.Label("Year range"),
+                    dcc.RangeSlider(id = 'slider',
+                                    marks = date_mark,
+                                    min = 0,
+                                    max = 12,
+                                    value = [0, 12]) 
+                        ], style = {'width' : '75%',
+                                    'fontSize' : '20px',
+                                    'padding-left' : '180px',
+                                    'display': 'inline-block',}),
+            
             # adding investment plot
               html.Iframe(
                         sandbox='allow-scripts',
@@ -420,60 +475,57 @@ app.layout = html.Div([
                                 "display": "block",
                                 "margin-left": "auto",
                                 "margin-right": "auto"},
-                        ################ The magic happens here
-                        srcDoc=make_plot2(df_tab2).to_html()
-                        ################ The magic happens here
-                        ),
-            # range slider
-                html.P([
-                    html.Label("Time Period"),
-                    dcc.RangeSlider(id = 'slider',
-                                    marks = date_mark,
-                                    min = 0,
-                                    max = 12,
-                                    value = [0, 12]) 
-                        ], style = {'width' : '75%',
-                                    'fontSize' : '20px',
-                                    'padding-left' : '100px',
-                                    'display': 'inline-block',}),
-        ])
-       
-             
+                        
+                        srcDoc=make_plot2(df_tab2).to_html()               
+                        ),     
+        ])    
             ], className="container"),
         ])
-        # Defining the layout of the second tab
         
-        
+####################################
+#### App layout ends ############
+####################################  
 
+## callbacks for interactivity based on drop-down menu on tab 2
 @app.callback(
     dash.dependencies.Output('plot', 'srcDoc'),
     [dash.dependencies.Input('my-dropdown', 'value')])
 def update_plot(selected_values):
     '''
-    Takes in an xaxis_column_name and calls make_plot to update our Altair figure
+    Takes in input based on list of options user select in 
+        dropdown and updates plot
+    Input - drop_down inputs selected
+    Return - Updated plot
+
     '''
     
-    # print(selected_values)
+    # updating data frame based on selected values
     df_drop = df[df['company'].isin(selected_values)]
     
     updated_plot = make_plot(df_drop).to_html()
     
     return updated_plot
 
+
+## callbacks for interactivity based on drop-down menu on tab 3
 @app.callback(Output('plot2', 'srcDoc'),
              [Input('slider', 'value')])
 def update_figure(X):
+    '''
+    Takes in input based on the time range user selects in 
+        slider and updates plot
+    Input - Slider range
+    Return - Updated plot
+
+    '''
+    # updating dataframe
     df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
-    
-    
-    
-    
     updated_plot = make_plot2(df2).to_html()
     
     return updated_plot
 
 
-
+# main call 
 if __name__ == '__main__':
     app.run_server(debug=True)
 
