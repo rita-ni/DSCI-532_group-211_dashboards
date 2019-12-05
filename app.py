@@ -412,7 +412,7 @@ app.layout = html.Div([
             
             # range slider
                 html.P([
-                    html.Label("Time Period"),
+                    html.Label("Year range"),
                     dcc.RangeSlider(id = 'slider',
                                     marks = date_mark,
                                     min = 0,
@@ -420,7 +420,7 @@ app.layout = html.Div([
                                     value = [0, 12]) 
                         ], style = {'width' : '75%',
                                     'fontSize' : '20px',
-                                    'padding-left' : '100px',
+                                    'padding-left' : '180px',
                                     'display': 'inline-block',}),
             
             # adding investment plot
