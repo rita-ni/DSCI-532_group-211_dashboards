@@ -154,7 +154,7 @@ def make_plot(df):
                 "title": {
                     "fontSize": 24,
                     "font": font,
-                    "anchor": "start", # equivalent of left-aligned.
+                    "anchor": "middle", # equivalent of left-aligned.
                     "fontColor": "#000000"
                 },
                 'view': {
@@ -214,14 +214,14 @@ def make_plot(df):
                 size=alt.condition(~highlight, alt.value(3), alt.value(5))
             ).add_selection(highlight
             ).properties(title='Historical Stock Prices',
-                        width=800, height=350)
+                        width=900, height=350)
     bars = alt.Chart(df).mark_bar().encode(
-                y='monthly_return',
+                y=alt.Y('monthly_return', axis=alt.Axis(format='%')),
                 x=alt.X('date', scale=alt.Scale(domain=brush)),
                 color=alt.condition(
                     alt.datum.monthly_return > 0,
                     alt.value("steelblue"),  # The positive color
-                    alt.value("orange"))
+                    alt.value("orange"))).properties(width = 470, title = 'Monthly price change (%)'
             ).transform_filter(highlight).facet(facet='company', columns=2)
     lower = alt.Chart(df).mark_line().encode(
                 alt.X('date', title = ' ', scale=alt.Scale(domain=brush)),
@@ -230,7 +230,7 @@ def make_plot(df):
                 size=alt.condition(~highlight, alt.value(3), alt.value(5))
             ).add_selection(highlight
             ).properties(title = 'Feel free to drag across a time period below to zoom in the chart!',
-    height=60, width = 800
+    height=60, width = 900
     ).add_selection(brush)
     return alt.vconcat(chart, lower) & bars
 
@@ -363,7 +363,7 @@ app.layout = html.Div([
             html.Div([
                 html.H1("Price History", style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.H2("From 2000 to 2010, Apple's stock price increased 760%.", style={'textAlign': 'center', 'fontFamily': 'arial'}),
-                html.H3("In this interactive chart below, you can visualize how the sotcks of 5 major tech companies changed between 2000 and 2010.", 
+                html.H3("In this interactive chart below, you can visualize how the stocks of 5 major tech companies changed between 2000 and 2010.", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.P("Use the dropdown window to select the company you want to explore. Use the slide bar down the graph to select the time range.", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
@@ -383,7 +383,7 @@ app.layout = html.Div([
                         id='plot',
                         height='1660',
                         width='1000',
-                        style={'height': 1000,
+                        style={'height': 1800,
                                 'width': '70%',
                                 "display": "block",
                                 "margin-left": "auto",
