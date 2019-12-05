@@ -267,6 +267,7 @@ def make_plot(df):
             ).properties(title = 'Feel free to drag across a time period below to zoom in the chart!',
     height=60, width = 900
     ).add_selection(brush)
+   
     return alt.vconcat(chart , lower) & bars
 
 def make_plot2(df):
