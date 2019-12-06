@@ -251,7 +251,7 @@ def make_plot(df):
                     alt.datum.monthly_return > 0,
                     alt.value("steelblue"),  # The positive color
                     alt.value("orange"))).properties(width = 470, title = 'Monthly price change (%)'
-            ).transform_filter(highlight).facet(facet='company',  title = "Monthly price % changes", columns=2)
+            ).transform_filter(highlight).facet(facet='company',  title = "Monthly stock price % changes", columns=2)
     
     #  monthly change chart
     lower = alt.Chart(df).mark_line().encode(
