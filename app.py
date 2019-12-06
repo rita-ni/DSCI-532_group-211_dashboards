@@ -1,6 +1,4 @@
 #importing required packages for the plot
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
