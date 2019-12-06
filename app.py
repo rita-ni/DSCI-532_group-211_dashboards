@@ -229,7 +229,7 @@ def make_plot(df):
     #alt.themes.enable('none') # to return to default
     
     # Create a plot from the cars dataset
-    highlight = alt.selection(type='single', on='click',
+    highlight = alt.selection(type='single', on='mouseover', nearest = True,
                           fields=['company'])
     brush = alt.selection(type='interval', encodings=['x'])
 
@@ -288,7 +288,7 @@ def make_plot2(df):
                 "title": {
                     "fontSize": 24,
                     "font": font,
-                    "anchor": "start", # equivalent of left-aligned.
+                    "anchor": "middle", # equivalent of left-aligned.
                     "fontColor": "#000000"
                 },
                 'view': {
@@ -425,7 +425,8 @@ app.layout = html.Div([
                                 'width': '70%',
                                 "display": "block",
                                 "margin-left": "auto",
-                                "margin-right": "auto"},
+                                "margin-right": "auto",
+                                "border": "0"},
                       
                         srcDoc=make_plot(df).to_html()   
                         )                         
@@ -437,10 +438,9 @@ app.layout = html.Div([
                 
             # adding text, title etc for tab3
 
-            html.H1("How much would my investment be?", 
+            html.H1("How much will I gain?", 
                     style={"textAlign": "center", 'fontFamily': 'arial'}),
-            html.H3("""If I invested $10,000 in each of the 5 tech companies in August 2004, 
-                    how much would have benn my investment been in later days?""", 
+            html.H3("""If I invested $10,000 in one of the companies in August 2004, how much will my investment worth in later days for each company?""", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.P("""Use the year slider bar to select the time range and find out the investment value.""", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
@@ -458,6 +458,9 @@ app.layout = html.Div([
                                     'padding-left' : '180px',
                                     'display': 'inline-block',}),
             
+            # To add some space
+              html.Iframe(height='15', width='10',style={'border-width': '0',
+                                                         "border": "0"}),
             # adding investment plot
               html.Iframe(
                         sandbox='allow-scripts',
@@ -468,14 +471,14 @@ app.layout = html.Div([
                                 'width': '70%',
                                 "display": "block",
                                 "margin-left": "auto",
-                                "margin-right": "auto"},
+                                "margin-right": "auto",
+                                "border": "0"},
                         
                         srcDoc=make_plot2(df_tab2).to_html()               
                         ), 
                 html.H1("Why Apple has the highest investment value?", 
                     style={"textAlign": "center", 'fontFamily': 'arial'}),
-                html.P("""I guess most of you are curious why Apple has the highest investment value, 
-                while Google has the highest stock price. That's see the math here.""", 
+                html.P("""If you are curious why Apple has the highest investment value while Google has the highest price in the historial price chart you have seen in the previous tab, let's see the math here.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}), 
                 html.P("""In August 2004, Google's stock price was $102.37. With $10,000, I can buy 10,000/102.37 = 97.68 shares.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}), 
@@ -485,18 +488,20 @@ app.layout = html.Div([
                     style={'textAlign': 'center', 'fontFamily': 'arial'}), 
                 html.P("""In March 2010, Apple's stock price was $223.02. Then my total investment value is  223.02 579.71 * shares = $129,286.95.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}),
-                html.H4("""Clearly, $129,286.95 is greater than $54,722.08.""", 
+                html.H4("""Clearly, $129,286.95 worth much more than $54,722.08. You would earn much more if you picked Apple!""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial', 'color': 'blue'}),    
                 html.H3("""Between 2004 and 2010, Google's stock price only increased 447.91%, but Apple increased 1192.9%.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}),
                 html.P("""It is this high growth that drags up Apple's investment value.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}),
-                html.H2("""In investment, growth is more important than price.""", 
+                html.H2("""In investment, growth is more important than price!""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial', 'color': 'blue'}),
                 html.P("""Hope this answers your question and gives you some insights on investment.""", 
                     style={'textAlign': 'center', 'fontFamily': 'arial'}),
-                 
-        ])    
+                
+                # To add some space
+                html.Iframe(height='150', width='10',style={'border-width': '0'})
+                ])    
             ], className="container"),
         ])
         
