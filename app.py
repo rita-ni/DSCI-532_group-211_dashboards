@@ -1,5 +1,4 @@
 #importing required packages for the plot
-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -161,13 +160,10 @@ date_mark = {i : dates[i] for i in range(0,13)}
 def make_plot(df):
     """
     Generates plots on tab 2 of the dashboard.
-
     Input - Data frame to be plotted
-
     Returns - Stock trend plot 
                 slider
                 monthly change chart
-
     """
     def mds_special():
 
@@ -249,13 +245,13 @@ def make_plot(df):
     
     
     bars = alt.Chart(df).mark_bar().encode(
-                y=alt.Y('monthly_return', axis=alt.Axis(format='%')),
-                x=alt.X('date', scale=alt.Scale(domain=brush)),
+                y=alt.Y('monthly_return', title = 'Monthly Change %', axis=alt.Axis(format='%')),
+                x=alt.X('date',  title = 'Month',  scale=alt.Scale(domain=brush)),
                 color=alt.condition(
                     alt.datum.monthly_return > 0,
                     alt.value("steelblue"),  # The positive color
                     alt.value("orange"))).properties(width = 470, title = 'Monthly price change (%)'
-            ).transform_filter(highlight).facet(facet='company', columns=2)
+            ).transform_filter(highlight).facet(facet='company',  title = "Monthly stock price % changes", columns=2)
     
     #  monthly change chart
     lower = alt.Chart(df).mark_line().encode(
@@ -273,9 +269,7 @@ def make_plot(df):
 def make_plot2(df):
     """
     Generates plots on tab 3 of the dashboard.
-
     Input - Data frame to be plotted
-
     Returns - Investment value plot
                 
     """
@@ -349,9 +343,9 @@ def make_plot2(df):
     y = alt.Y('inv_value:Q', title = 'Investment Value $USD'),
     color = alt.Color('company:N', title = 'Company',
                   sort = ['Apple','Google','Amazon', 'IBM', 'Microsoft'])
-            ).properties(width = 800, height = 400, title = 'Investment value change over the time')
+            ).properties(width = 800, height = 400, title = 'Investment value change over time')
 
-    return chart + chart.mark_circle()
+    return chart + chart.mark_circle() 
 
 
 ####################################
@@ -445,10 +439,10 @@ app.layout = html.Div([
 
             html.H1("How much would my investment be?", 
                     style={"textAlign": "center", 'fontFamily': 'arial'}),
-            html.H3("""If I invested $10,000 in each of the 5 tech companies in August 2004 (when Google held its IPO), 
-                    how much would have my investment been in later days?""", 
+            html.H3("""If I invested $10,000 in each of the 5 tech companies in August 2004, 
+                    how much would have benn my investment been in later days?""", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}),
-                html.P("Use the year slide bar to select the time range and find out the investment value.", 
+                html.P("""Use the year slider bar to select the time range and find out the investment value.""", 
                         style={'textAlign': 'center', 'fontFamily': 'arial'}), 
             
             # range slider for selecting time range
@@ -477,7 +471,31 @@ app.layout = html.Div([
                                 "margin-right": "auto"},
                         
                         srcDoc=make_plot2(df_tab2).to_html()               
-                        ),     
+                        ), 
+                html.H1("Why Apple has the highest investment value?", 
+                    style={"textAlign": "center", 'fontFamily': 'arial'}),
+                html.P("""I guess most of you are curious why Apple has the highest investment value, 
+                while Google has the highest stock price. That's see the math here.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}), 
+                html.P("""In August 2004, Google's stock price was $102.37. With $10,000, I can buy 10,000/102.37 = 97.68 shares.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}), 
+                html.P("""In March 2010, Google's stock price was $560.19. Then my total investment value is 560.19 * 97.68 shares = $54,722.08.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}),
+                html.P("""On the other hand, in August 2004, Apple's stock price was $17.25. With $10,000, I can buy 10,000/102.37 = 579.71 shares.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}), 
+                html.P("""In March 2010, Apple's stock price was $223.02. Then my total investment value is  223.02 579.71 * shares = $129,286.95.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}),
+                html.H4("""Clearly, $129,286.95 is greater than $54,722.08.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial', 'color': 'blue'}),    
+                html.H3("""Between 2004 and 2010, Google's stock price only increased 447.91%, but Apple increased 1192.9%.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}),
+                html.P("""It is this high growth that drags up Apple's investment value.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}),
+                html.H2("""In investment, growth is more important than price.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial', 'color': 'blue'}),
+                html.P("""Hope this answers your question and gives you some insights on investment.""", 
+                    style={'textAlign': 'center', 'fontFamily': 'arial'}),
+                 
         ])    
             ], className="container"),
         ])
@@ -496,7 +514,6 @@ def update_plot(selected_values):
         dropdown and updates plot
     Input - drop_down inputs selected
     Return - Updated plot
-
     '''
     
     # updating data frame based on selected values
@@ -516,7 +533,6 @@ def update_figure(X):
         slider and updates plot
     Input - Slider range
     Return - Updated plot
-
     '''
     # updating dataframe
     df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
@@ -528,5 +544,3 @@ def update_figure(X):
 # main call 
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-
