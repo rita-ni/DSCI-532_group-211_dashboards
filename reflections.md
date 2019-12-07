@@ -19,14 +19,14 @@ The feedbacks can be found from the Github issues here:
 2.	We added a title and axis labels for the second chart in Tab 2.
 3.	We fixed the “two scroll bars” problem in Tab 2.
 4.	We moved the slider bar in Tab 3 to the top of the chart.
-5.	We added explanations of the investment “mystery”: why Google has the highest stock price, but Apple has the highest investment value.
+5.  We fixed the starting point of the slider bar in Tab 3. Now users can only select different end point on the slider bar.
+6.	We added explanations of the investment “mystery”: why Google has the highest stock price, but Apple has the highest investment value.
 
 We chose to take those changes as high priorities and we changed them according to our feedbacks. We believe that these changes can improve the usability of our app and improve user interface. We want to make the app itself as explicit as possible and easy for people to use. These changes help us achieve this goal.
 
 # Wishlist of the features:
 1.	Add a vertical line to the chart in Tab 3.
-2.	Fix the starting point of the slider bar in Tab 3.
-3.	Add a theme to the app to make it more appealing. 
+2.	Add a theme to the app to make it more appealing. 
 
 We did not implement the above features, partly because of the time constraint, and partly because lacking these features does not affect the usability of our app.  
 
