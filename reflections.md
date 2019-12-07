@@ -26,7 +26,7 @@ The feedbacks can be found from the Github issues here:
 We chose to take those changes as high priorities and we changed them according to our feedbacks. We believe that these changes can improve the usability of our app and improve user interface. We want to make the app itself as explicit as possible and easy for people to use. These changes help us achieve this goal.
 
 # Features we did not update
-1.	Add a vertical line to the chart in Tab 3.
+1.	Add a vertical line to the chart in Tab 3.     
   We tried to add a vertical line to the chart, but the effect was not satisfying. Because we have some lines that overlap with each other, adding a vertical line to display all the labels at the same time causes distraction. So we decided not to add the vertical line and keep the chart simple but effective. 
 
 2.  Fix the format of the x-axis for the first plot in Tab 2
