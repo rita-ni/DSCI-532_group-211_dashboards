@@ -2,6 +2,7 @@
 1.	There were some typos in titles and text in the app.
 2.	The second chart in Tab 2 needed a title and axis labels.
 3.	In Tab 2, there were two scroll bars.
+4.  In Tab2, the x-axis for the first plot changes format if the user selects a date window. It might be better to keep the same format.
 4.	The slider in Tab 3 was down the graph at the bottom. It was not obvious to users and they tend to miss it.
 5.	It might be better to fix the starting point of the slider bar
 6.	Users were confused by the result of the chart in Tab 3: why Google has the highest stock price, but Apple has the highest investment value.
@@ -24,11 +25,24 @@ The feedbacks can be found from the Github issues here:
 
 We chose to take those changes as high priorities and we changed them according to our feedbacks. We believe that these changes can improve the usability of our app and improve user interface. We want to make the app itself as explicit as possible and easy for people to use. These changes help us achieve this goal.
 
-# Wishlist of the features:
+# Features we did not update
 1.	Add a vertical line to the chart in Tab 3.
-2.	Add a theme to the app to make it more appealing. 
+  We tried to add a vertical line to the chart, but the effect was not satisfying. Because we have some lines that overlap with each other, adding a vertical line to display all the labels at the same time causes distraction. So we decided not to add the vertical line and keep the chart simple but effective. 
 
-We did not implement the above features, partly because of the time constraint, and partly because lacking these features does not affect the usability of our app.  
+2.  Fix the format of the x-axis for the first plot in Tab 2
+There are two main reasons why we did not implement this feedback.
+    1. The default is to show the whole 10-year time range, it makes sense to show the "year" instead of "month". When you select a specific time range, it makes sense to show more details of the that time range, namely, to show "month" rather than "year".
+    2. This also has something to do with how Altair defines the temporal data type. It is the default how Altair represents temporal data on the axis. It is more of a technical issue.
+
+3.	Add a theme to the app to make it more appealing. 
+
+    For the third feature, we did not implement it, partly because of the time constraint, and partly because lacking an appealing theme does not affect the usability of our app.  
+
+# Wishlist of the feature 
+If we have infinite time, we would like to:
+1. Find a better format to represent the x-axis for the first plot in Tab 2.
+2. Make the app more appealing, such as adding themes and colors. 
+
 
 # Reflection on the feedbacks
 ## Similarities:
