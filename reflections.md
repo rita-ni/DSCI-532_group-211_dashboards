@@ -8,6 +8,8 @@
 7.	There might need a vertical line in the chart in Tab 3.
 8.	More colors could be added to make the app more visually appealing.
 
+The feedbacks can be found from the Github issues here: [Github issues](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/40)
+
 # High level summary of the changes we made:
 1.	We fixed the typos in the app
 2.	We added a title and axis labels for the second chart in Tab 2
@@ -32,7 +34,7 @@ We did not implement the above features partly because of the time constraint, a
 4. A number of people liked the fact that we have a brief introduction of our dataset and short explanation in each tab. This helps people understand the functionalities of our app and how to use the app.
 
 
-# Reflections on the usability of the app:
+## Reflections on the usability of the app:
 1. Our app is easy to use and easy to understand. The drop-down window and slider bar are common interaction widgets. They are easy to use and also inspire user interests. When seeing the drop-down window in Tab 2, people immediately understands that there is something they can select. They also know how to use the slider bar to select the time range of interest. These interactions give people the freedom to explore by themselves. This is better than giving them all the information at once. 
 2.	The introductions of the dataset and the explanation on each tab helps people understand the purpose and functions of this app. This shows that we cannot assume users to have prior knowledge as us the developers. We need to provide them with decent amount of information and guidance to help them learn and understand our app. 
 3.	Being a "fly-on-the-wall" gives us a chance to see how users interacts with our app in reality. This helps us to view our app from different perspectives and how we should improve it. We think this is a very useful experience. 
