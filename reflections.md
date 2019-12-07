@@ -8,7 +8,11 @@
 7.	There might need a vertical line in the chart in Tab 3.
 8.	More colors could be added to make the app more visually appealing.
 
-The feedbacks can be found from the Github issues here: [Github issues](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/40)
+The feedbacks can be found from the Github issues here: 
+[summary of feedbacks](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/40)
+[feedback 1](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/37)
+[feedback 2](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/38)
+[feedback 3](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/39)
 
 # High level summary of the changes we made:
 1.	We fixed the typos in the app
