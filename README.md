@@ -2,7 +2,7 @@
 
 This repository hosts the dashboard for the stock price data from the `vega-dataset`. The background and purpose of this dashboard can be found in our [proposal.](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/blob/master/Proposal.md)
 
-**The deployed APP can be found here: https://dsci532-group-211-milestone2.herokuapp.com/**
+**The deployed APP can be found here: https://dsci532-group-211-milestone3.herokuapp.com/**
 
 ### Description of the App/Dashboard
 
