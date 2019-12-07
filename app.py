@@ -8,8 +8,8 @@ import altair as alt
 import vega_datasets
 import pandas as pd
 import dash_table
-import plotly.express as px
-import plotly.graph_objs as go
+
+
 
 
 
@@ -448,14 +448,14 @@ app.layout = html.Div([
             # range slider for selecting time range
             html.P([
                     html.Label("Year range"),
-                    dcc.RangeSlider(id = 'slider',
+                    dcc.Slider(id = 'slider',
                                     marks = date_mark,
                                     min = 0,
                                     max = 12,
-                                    value = [0, 12]) 
+                                    value = 10) 
                         ], style = {'width' : '75%',
                                     'fontSize' : '20px',
-                                    'padding-left' : '180px',
+                                    'padding-left' : '220px',
                                     'display': 'inline-block',}),
             
             # To add some space
@@ -540,7 +540,7 @@ def update_figure(X):
     Return - Updated plot
     '''
     # updating dataframe
-    df2 = df_tab2[(df_tab2.date >= dates[X[0]]) & (df_tab2.date <= dates[X[1]])]
+    df2 = df_tab2[(df_tab2.date >= '2004-08-01') & (df_tab2.date <= dates[X])]
     updated_plot = make_plot2(df2).to_html()
     
     return updated_plot
