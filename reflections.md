@@ -1,30 +1,44 @@
+# High level summary of the feedbacks during lab session:
+1.	There were some typos in titles and text in the app.
+2.	The second chart in Tab 2 needed a title and axis labels.
+3.	In Tab 2, there were two scroll bars.
+4.	The slider in Tab 3 was down the graph at the bottom. It was not obvious to users and they tend to miss it.
+5.	It might be better to fix the starting point of the slider bar
+6.	Users were confused by the result of the chart in Tab 3: why Google has the highest stock price, but Apple has the highest investment value.
+7.	There might need a vertical line in the chart in Tab 3.
+8.	More colors could be added to make the app more visually appealing.
 
-## Reflection
+The feedbacks can be found from the Github issues here:     
+[summary of feedbacks](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/40)     
+[feedback 1](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/37)   
+[feedback 2](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/38)     
+[feedback 3](https://github.com/UBC-MDS/DSCI-532_group-211_dashboards/issues/39)    
 
-### First tab:
-- The first tab has two interactive charts. One for the historical stock prices and one for monthly changes in stock prices for top 5 Tech companies. **(Which addresses our research question)**
-- Both charts are easy to understand, user can select stocks from the dropdown menu to compare difference between stocks and make an informed decision about his/her investments.
-- Both charts have slider bars for the user to select time range to refine their search.
-- Second chart will change accordingly based on the company selected in dropdown menu. **(implemented based on feedback on milestone1)**
-- Both charts have a brief introduction which suggest user the purpose of these charts and how to intereact with them. **(implemented as per feedback received on milestone 1)**
-- When user selects multiple companies in the dropdown menu, the second chart shows monthly price changes for all selected companies. **(implemented as per feedback received on milestone 1)**
+# High level summary of the changes we made:
+1.	We fixed the typos in the app.
+2.	We added a title and axis labels for the second chart in Tab 2.
+3.	We fixed the “two scroll bars” problem in Tab 2.
+4.	We moved the slider bar in Tab 3 to the top of the chart.
+5.	We added explanations of the investment “mystery”: why Google has the highest stock price, but Apple has the highest investment value.
+
+We chose to take those changes as high priorities and we changed them according to our feedbacks. We believe that these changes can improve the usability of our app and improve user interface. We want to make the app itself as explicit as possible and easy for people to use. These changes help us achieve this goal.
+
+# Wishlist of the features:
+1.	Add a vertical line to the chart in Tab 3.
+2.	Fix the starting point of the slider bar in Tab 3.
+3.	Add a theme to the app to make it more appealing. 
+
+We did not implement the above features, partly because of the time constraint, and partly because lacking these features does not affect the usability of our app.  
+
+# Reflection on the feedbacks
+## Similarities:
+1.	A number of people noticed that there were some typos in the text in our app.
+2. The second chart on Tab 2 lacked a title and axis labels, and this made the graph difficult to understand.
+3. A number of people liked the fact that we have 3 tabs. Each tab serves only one function. This makes each tab clean and easy to navigate. They also liked the systematic layout of each of our tabs.
+4. A number of people liked the fact that we have a brief introduction of our dataset and short explanation in each tab. This helps people understand the functionalities of our app and how to use the app.
 
 
-### Second tab:
-- The chart in this tab shows the how a hypothetical investment value ($10K) changes over the time for different companies, which gives user an idea about the returns for short term and long term investment for different companies. **(Research question)**
-- The second chart proposed in sketch was removed from this tab as we thought it is reduntant and showed same values in percentages. 
-- All time range sliders in our dashboard allow user to change both start and end time. **(incorporated as the part of feedback on milestone 1)**
-
-### Third tab
-- This tab was not part of initial sketch but we added it to show user the glimpse and summary of dataset behind the dashboard.
-- Idea behind this is to ensure transparency to the users who may use dashboard to make decisions. 
-
-## Limitations
-- The original dataset is limited(3 main columns), so there are only few things we can do with it.
-- The dashboard is simple as of now; If we have more time, we can add more fancy widgets and themes to make it look more more professional.
-- The arrangement of charts and texts can be improved to make the dashboard more organized and user friendly. 
-
-
- 
-
-
+## Reflections on the usability of the app:
+1. Our app is easy to use and easy to understand. The drop-down window and slider bar are common interaction widgets. They are easy to use and also inspire user interests. When seeing the drop-down window in Tab 2, people immediately understand that there is something they can select. They also know how to use the slider bar to select the time range of interest. These interactions give people the freedom to explore by themselves. This is better than giving them all the information at once. 
+2.	The introductions of the dataset and the explanation on each tab helps people understand the purpose and functions of this app. This shows that we cannot assume users to have prior knowledge as us the developers. We need to provide them with sufficient amount of information and guidance to help them learn and understand our app. 
+3.	Being a "fly-on-the-wall" gives us a chance to see how users interact with our app in reality. This helps us to view our app from different perspectives and how we should improve it. We think this is a very useful experience. 
